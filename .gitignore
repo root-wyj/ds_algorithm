@@ -12,6 +12,7 @@ target/
 .project
 .classpath
 bin/
+out/
 
 ### STS ###
 .apt_generated
