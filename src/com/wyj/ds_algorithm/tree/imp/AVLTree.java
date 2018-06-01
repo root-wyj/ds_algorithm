@@ -53,11 +53,61 @@ public class AVLTree<T extends Comparable<T>>{
 				return tree;
 			}
 			
-			tree = blancedTree(tree);
+			tree = balancedTree(tree);
 			
 		}
 		
 		tree.height = Math.max(getHeight(tree.left), getHeight(tree.right)) + 1;
+		
+		return tree;
+	}
+	
+	
+	public void delete(T data) {
+		this.mRoot = delete(mRoot, data);
+	}
+	
+	private AVLNode<T> delete(AVLNode<T> tree, T data) {
+		if (tree == null || data == null) return tree;
+		
+		int compared = data.compareTo(tree.data);
+		if (compared < 0) {
+			tree.left = delete(tree.left, data);
+		} else if (compared > 0) {
+			tree.right = delete(tree.right, data);
+		} else {
+			// 相等，这就是要删除的节点
+			if (tree.left != null && tree.right != null) {
+				
+				//删除的时候 和之前有点不一样，如果直接交换后继节点的话，并删除叶子节点的话，
+				// 而且平衡性也可能会受到了影响，可以直接掉 balance方法，保持树的平衡
+				// 但是，由于直接删掉了叶子节点， 从原tree节点 到被删掉的叶子节点之间的高度 就会不正确
+				// 最后 通过下面的方式 巧妙解决（不直接删除，继续交给子树去删除）。
+				
+				//如果直接去找 后继节点的话，可能会导致树不平衡，增加平衡时候的消耗，我们可以通过比较左右子树的高度 保证这次的删除操作 不会出现不平衡(后来发现也不一定)
+				
+				AVLNode<T> minNode = min(tree.right);
+				tree.data = minNode.data;
+				tree.right = delete(tree.right, minNode.data);
+			} else if (tree.left == null && tree.right == null) {
+				
+				return null;
+			} else {
+				
+				if (tree.left == null) {
+					tree.data = tree.right.data;
+					tree.right = null;
+				}
+				
+				if (tree.right == null) {
+					tree.data = tree.left.data;
+					tree.left = null;
+				}
+			}
+		}
+		
+		balancedTree(tree);
+		
 		
 		return tree;
 	}
@@ -72,7 +122,7 @@ public class AVLTree<T extends Comparable<T>>{
 	 * 通过各种旋转手段，保证二叉树的平衡，前提条件是 左右子树的高度是正确的。
 	 * @param tree
 	 */
-	private AVLNode<T> blancedTree(AVLNode<T> tree) {
+	private AVLNode<T> balancedTree(AVLNode<T> tree) {
 		int diff = getHeight(tree.left) - getHeight(tree.right);
 		
 		
@@ -134,6 +184,13 @@ public class AVLTree<T extends Comparable<T>>{
 		return rotateRR(tree);
 	}
 	
+	private AVLNode<T> min(AVLNode<T> tree) {
+		if (tree == null) throw new IllegalArgumentException("非法参数 null");
+		
+		if (tree.left != null) return min(tree.left);
+		else return tree;		
+	}
+	
 	public void preOrderPrint(AVLNode<T> tree) {
 		if (tree == null) {
 			return;
@@ -168,6 +225,16 @@ public class AVLTree<T extends Comparable<T>>{
 			tree.insert(item);
 		}
 		
+		
+		System.out.println("先序遍历：");
+		tree.preOrderPrint(tree.mRoot);
+		System.out.println();
+		
+		System.out.println("中序遍历：");
+		tree.midOrderPrint(tree.mRoot);
+		System.out.println();
+		
+		tree.delete(13);
 		
 		System.out.println("先序遍历：");
 		tree.preOrderPrint(tree.mRoot);
