@@ -96,8 +96,8 @@ public class DP_GoldMine {
 	public static void main(String[] args) {
 		DP_GoldMine goldMine = new DP_GoldMine("src/com/wyj/ds_algorithm/dp/test_data/beibao9.in");
 		int result = goldMine.optimalResolution(goldMine.mineCount, goldMine.people);
-		System.out.println(result);
-		System.out.println(hitCount);
+		System.out.println("最优解："+result);
+		System.out.println("重复命中的次数："+hitCount);
 	}
 	
 	public DP_GoldMine(String fileName) {
