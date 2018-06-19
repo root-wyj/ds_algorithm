@@ -1,5 +1,11 @@
 package com.wyj.ds_algorithm.dp;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  * <p>动态规划 之  挖金矿<p>
  * <br> 参考自：http://www.cnblogs.com/sdjl/articles/1274312.html
@@ -45,6 +51,82 @@ package com.wyj.ds_algorithm.dp;
  * @date 2018年6月15日
  */
 
-public class DB_GoldMine {
+public class DP_GoldMine {
+	
+	public static final int max_mine = 100;
+	private static final int max_people = 1000;
+	
+	int mine[] = new int[max_mine+1];
+	int usePeople[] = new int[max_mine+1];
+	
+	int table[][] = new int[max_mine+1][max_people+1];
+	
+	static int hitCount = 0;
+	
+	int people = 0;
+	int mineCount = 0;
+	
+	public int optimalResolution(int curMine, int curPeople) {
+		int result = table[curMine][curPeople];
+		
+		if (result != 0) {
+			hitCount ++;
+			return result;
+		}
+		
+		if (curMine == 1) {
+			if (curPeople > usePeople[curMine]) {
+				result = mine[curMine];
+			} else {
+				result = 0;
+			}
+		} else if (curPeople > usePeople[curMine]) {
+			//如果当前人数能挖 这个矿，考虑挖或者不挖  那个更多
+			result = Math.max(optimalResolution(curMine - 1, curPeople - usePeople[curMine]) + mine[curMine],
+					optimalResolution(curMine - 1, curPeople));
+		} else {
+			// 当前人数 挖不起 这个矿
+			result = optimalResolution(curMine - 1, curPeople);
+		}
+		
+		table[curMine][curPeople] = result;
+		return result;
+	}
+	
+	public static void main(String[] args) {
+		DP_GoldMine goldMine = new DP_GoldMine("src/com/wyj/ds_algorithm/dp/test_data/beibao9.in");
+		int result = goldMine.optimalResolution(goldMine.mineCount, goldMine.people);
+		System.out.println(result);
+		System.out.println(hitCount);
+	}
+	
+	public DP_GoldMine(String fileName) {
+		File f = new File(fileName);
+		if (!f.exists()) throw new RuntimeException("file "+fileName+" not found");
+		
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+			String[] tmpData = br.readLine().split(" ");
+			people = Integer.valueOf(tmpData[0]);
+			mineCount = Integer.valueOf(tmpData[1]);
+			
+			for (int i=1; i<=mineCount; i++) {
+				tmpData = br.readLine().split(" ");
+				usePeople[i] = Integer.valueOf(tmpData[0]);
+				mine[i] = Integer.valueOf(tmpData[1]);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+	}
 
 }
