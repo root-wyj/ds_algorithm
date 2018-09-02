@@ -56,4 +56,17 @@ public class TreeUtils {
             }
         }
     }
+
+    private int position = 0;
+
+    public int getPosition() {
+        return position++;
+    }
+
+    public static void main(String[] args) {
+        TreeUtils t = new TreeUtils();
+        System.out.println(t.getPosition());
+        System.out.println(t.position);
+    }
+
 }
