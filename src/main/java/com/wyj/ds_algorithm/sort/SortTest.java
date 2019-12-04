@@ -1,0 +1,58 @@
+package com.wyj.ds_algorithm.sort;
+
+import java.util.Arrays;
+import java.util.function.Consumer;
+
+/**
+ * Created
+ * Author: wyj
+ * Date: 2019/12/4
+ */
+public class SortTest {
+    static int[] array1 = {1, 3, 9, 2, 5, 0, 7, 8, 6, 4};
+    static int[] array2 = {1, 3, 9, 2, 5, 0, 7, 8, 6, 4, 13, 39, 2, 55, 0, 7, 98, 6, 24};
+    static int[] array3 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    static int[] array4 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
+
+    static int[] array11 = {11, 10, 30, 44};
+
+    public static void main(String[] args) {
+//        qSortTest();
+//        qSort_FillTest();
+        qSort_SingleForwardScanTest();
+    }
+
+    private static void testSub(int[] array, Consumer<int[]> consumer) {
+        int[] tmp1 = Arrays.copyOf(array, array.length);
+        consumer.accept(tmp1);
+        System.out.println(Arrays.toString(tmp1));
+    }
+
+    private static void testList(Consumer<int[]> consumer) {
+        testSub(array1, consumer);
+        testSub(array2, consumer);
+        testSub(array3, consumer);
+        testSub(array4, consumer);
+    }
+
+    private static void qSortTest() {
+        System.out.println("qSort");
+        testSub(array11, QSort::qSort);
+
+        testList(QSort::qSort);
+    }
+
+    private static void qSort_FillTest() {
+        System.out.println("qSort_Fill");
+        testSub(array11, QSort_Fill::qSort_Fill);
+
+        testList(QSort_Fill::qSort_Fill);
+    }
+
+    private static void qSort_SingleForwardScanTest() {
+        System.out.println("qSort_SingleForwardScan");
+        testList(QSort_SingleForwardScan::qSort_SingleForwardScan);
+    }
+
+
+}
