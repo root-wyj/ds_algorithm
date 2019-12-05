@@ -11,7 +11,7 @@ import java.util.function.Consumer;
 public class SortTest {
     static int[] array1 = {1, 3, 9, 2, 5, 0, 7, 8, 6, 4};
     static int[] array2 = {1, 3, 9, 2, 5, 0, 7, 8, 6, 4, 13, 39, 2, 55, 0, 7, 98, 6, 24};
-    static int[] array3 = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    static int[] array3 = {1, 2, 3, 4, 5, 6, 7, 8, 9, 45, 102};
     static int[] array4 = {9, 8, 7, 6, 5, 4, 3, 2, 1};
 
     static int[] array11 = {11, 10, 30, 44};
@@ -24,7 +24,9 @@ public class SortTest {
 //        insertSort_ShellTest();
 //        insertSort_BisectTest();
 //        swapSort_CocktailTest();
-        mergeSort_BasicTest();
+//        mergeSort_BasicTest();
+//        countSort_BasicTest();
+        countSort_RadixTest();
     }
 
     private static void testSub(int[] array, Consumer<int[]> consumer) {
@@ -83,6 +85,20 @@ public class SortTest {
         System.out.println("mergeSort_Basic");
         testList(MergeSort_Basic::mergeSort_Basic);
     }
+
+    private static void countSort_BasicTest() {
+        System.out.println("countSort_Basic");
+        testList(CountSort_Basic::countSort_Basic);
+    }
+
+    private static void countSort_RadixTest() {
+        System.out.println("CountSort_Radix");
+        testList(CountSort_Radix::countSort_Radix);
+    }
+
+
+
+
 
 
 
