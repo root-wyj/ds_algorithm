@@ -19,15 +19,9 @@ public class InsertSort_Simple {
 
             int n = i;
 
-            while (n>=0) {
-
-                if (insertValue < arr[n]) {
-                    arr[n + 1] = arr[n];
-                    n--;
-                } else {
-                    break;
-                }
-
+            while (n>=0 && insertValue < arr[n]) {
+                arr[n + 1] = arr[n];
+                n--;
             }
             arr[n + 1] = insertValue;
             i++;

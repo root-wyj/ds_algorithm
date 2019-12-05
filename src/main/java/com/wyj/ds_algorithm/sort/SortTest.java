@@ -21,8 +21,10 @@ public class SortTest {
 //        qSort_FillTest();
 //        qSort_SingleForwardScanTest();
 //        insertSort_SimpleTest();
-        insertSort_ShellTest();
+//        insertSort_ShellTest();
 //        insertSort_BisectTest();
+//        swapSort_CocktailTest();
+        mergeSort_BasicTest();
     }
 
     private static void testSub(int[] array, Consumer<int[]> consumer) {
@@ -71,6 +73,17 @@ public class SortTest {
         System.out.println("insertSort_BisectTest");
         testList(InsertSort_Bisect::insertSort_Bisect);
     }
+
+    private static void swapSort_CocktailTest() {
+        System.out.println("swapSort_Cocktail");
+        testList(SwapSort_Cocktail::swapSort_Cocktail);
+    }
+
+    private static void mergeSort_BasicTest() {
+        System.out.println("mergeSort_Basic");
+        testList(MergeSort_Basic::mergeSort_Basic);
+    }
+
 
 
 }
