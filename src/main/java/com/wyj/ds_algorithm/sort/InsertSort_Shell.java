@@ -1,6 +1,7 @@
 package com.wyj.ds_algorithm.sort;
 
 /**
+ * 希尔排序--分步长的 插入排序
  * Created
  * Author: wyj
  * Date: 2019/12/5

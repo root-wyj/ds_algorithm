@@ -1,5 +1,21 @@
 # 排序
 
+
+
+| 排序算法 | 是否原地排序 | 是否稳定 | 平均时间复杂度 | 最好 | 最坏 |
+|:-- |:-- |:-- |:-- |:-- |:-- |
+|冒泡 | true | true | O(n^2) | O(n) | O(n^2)|
+|插入 | true | true | O(n^2) | O(n) | O(n^2)|
+|选择 | true | false | O(n^2) | O(n^2) | O(n^2)|
+|归并 | false | true | O(nlogn) | O(nlogn) | O(nlogn) |
+|快排 | true | false | O(nlogn) | O(nlogn) | O(n^2) |
+|堆排序 | true | false | O(nlogn) | O(nlogn) | O(nlogn) |
+|桶排序 | false | true | O(n) | O(n) | O(nlogn) |
+|计数排序 | false | true | O(n+k) | O(n+k) | O(n+k) |
+|基数排序 | false | true | O(kn) | O(kn) | O(kn) |
+
+
+
 ## 快速排序
 
 
@@ -26,5 +42,12 @@ Arrays.sort底层使用的也是DualPivotQuickSort，这个类对双轴快排在
 6 双向扫描 分组
 7 双轴
 
+<br>
+
+## 选择排序
+
+**不是个稳定的排序算法。**
+
+![选择排序](img/选择排序.jpeg)
 
 其他排序 参考与：https://blog.csdn.net/holmofy/article/details/70245895

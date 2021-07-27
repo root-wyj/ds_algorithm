@@ -51,4 +51,30 @@ public class CountSort_Basic {
 
         System.arraycopy(result, 0, arr, 0, result.length);
     }
+
+    public static void practiceCountSort(int[] array) {
+        int min = array[0], max = array[0];
+        for (int i=0; i<array.length; i++) {
+            min = Math.min(min, array[i]);
+            max = Math.max(max, array[i]);
+        }
+
+        int[] countArr = new int[max-min+1];
+        for (int i=0; i<array.length; i++) {
+            // 计数
+            countArr[array[i]-min]++;
+        }
+
+        //
+        int k=array.length-1;
+        for (int i=countArr.length-1; i>=0; i--) {
+            while (countArr[i] > 0) {
+                array[k] = i + min;
+                countArr[i]--;
+                k--;
+            }
+        }
+
+
+    }
 }

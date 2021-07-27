@@ -1,6 +1,7 @@
 package com.wyj.ds_algorithm.sort;
 
 /**
+ * 二分插入
  * Created
  * Author: wyj
  * Date: 2019/12/5
@@ -28,6 +29,9 @@ public class InsertSort_Bisect {
         }
     }
 
+    /**
+     * 二分查找
+     */
     public static int bisectFind(int[] arr, int start, int end, int value) {
         int mid = start;
         while (start <= end) {

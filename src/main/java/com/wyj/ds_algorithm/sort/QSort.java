@@ -47,6 +47,7 @@ public class QSort {
         }
 
         // 将中心点的数据和start 交换，中心点 总是 后面的那个？？？
+        // 和m交换 是因为 pivot 在左边，m最后的位置一定是 小于pivot的，所以m和pivot交换后，满足 pivot 左边的 小于 它
         SortUtils.swap(array, start, m);
 
         sort(array, start, m-1);

@@ -26,7 +26,9 @@ public class SortTest {
 //        swapSort_CocktailTest();
 //        mergeSort_BasicTest();
 //        countSort_BasicTest();
+//        countSort_BasicTestPractice();
         countSort_RadixTest();
+//        heapSort_Test();
     }
 
     private static void testSub(int[] array, Consumer<int[]> consumer) {
@@ -36,10 +38,10 @@ public class SortTest {
     }
 
     private static void testList(Consumer<int[]> consumer) {
-        testSub(array1, consumer);
-        testSub(array2, consumer);
+//        testSub(array1, consumer);
+//        testSub(array2, consumer);
         testSub(array3, consumer);
-        testSub(array4, consumer);
+//        testSub(array4, consumer);
     }
 
     private static void qSortTest() {
@@ -91,12 +93,20 @@ public class SortTest {
         testList(CountSort_Basic::countSort_Basic);
     }
 
+    private static void countSort_BasicTestPractice() {
+        System.out.println("countSort_Basic practice");
+        testList(CountSort_Basic::practiceCountSort);
+    }
+
     private static void countSort_RadixTest() {
         System.out.println("CountSort_Radix");
         testList(CountSort_Radix::countSort_Radix);
     }
 
-
+    private static void heapSort_Test() {
+        System.out.println("HeapSort");
+        testList(HeapSort::heapSort);
+    }
 
 
 
