@@ -5,6 +5,8 @@ package com.wyj.ds_algorithm.leecode;
  * 一次买卖的 最大值
  * @author wuyingjie
  * Created on 2021-05-07
+ * @see LC122 不限制次数买卖
+ * @see LC188 限制N次买卖
  */
 public class LC121 {
 
