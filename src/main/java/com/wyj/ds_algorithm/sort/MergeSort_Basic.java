@@ -67,4 +67,46 @@ public class MergeSort_Basic {
 
         System.arraycopy(tmp, start, arr, start, end-start+1);
     }
+
+    public static void mergeSortTest(int[] array) {
+        int[] tmp = new int[array.length];
+        mergeSortTest(array, tmp, 0, array.length - 1);
+    }
+
+    public static void mergeSortTest(int[] array, int[] tmp, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+
+        int mid = ( start + end ) / 2;
+
+        mergeSortTest(array, tmp, start, mid);
+        mergeSortTest(array, tmp, mid+1, end);
+
+        int tmpIndex = start;
+        int i = start;
+        int j = mid + 1;
+
+        while (i<=mid && j<=end) {
+            if (array[i] <= array[j]) {
+                tmp[tmpIndex] = array[i];
+                tmpIndex++;
+                i++;
+            } else {
+                tmp[tmpIndex] = array[j];
+                tmpIndex++;
+                j++;
+            }
+        }
+
+        while (i<=mid) {
+            tmp[tmpIndex++] = array[i++];
+        }
+
+        while (j<=end) {
+            tmp[tmpIndex++] = array[j++];
+        }
+
+        System.arraycopy(tmp, start, array, start, end-start+1);
+    }
 }

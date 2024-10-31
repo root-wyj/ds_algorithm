@@ -79,4 +79,50 @@ public class LC25 {
             return data + "";
         }
     }
+
+    public static void reverseKNode(ListNode head, int k) {
+        ListNode preList = null;
+        ListNode nextList = head;
+
+        int i=1;
+        ListNode next = head;
+        ListNode tmpHead = head;
+        while (next.next != null) {
+            next = next.next;
+            i++;
+
+            if (i == k) {
+
+            }
+            tmpHead = tmpHead.next;
+        }
+
+    }
+
+    private static void reverse2(ListNode preList, ListNode nextList, ListNode head, int cnt) {
+        ListNode next = head.next;
+        for (int i=0; i<cnt; i++) {
+            next = next.next;
+
+            head.next.next = head;
+            head.next = null;
+
+        }
+    }
+
+    /**
+     * 简单的链表 逆序，思路是 假设head前面有个 空节点pre，然后从head开始 一个一个的调整指针，第一个调整的就是head的指针
+     */
+    public ListNode simpleReverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
 }

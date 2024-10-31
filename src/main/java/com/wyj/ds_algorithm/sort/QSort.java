@@ -19,6 +19,41 @@ public class QSort {
         sort(array, 0, array.length-1);
     }
 
+    static int[] array11 = {11, 10, 10, 11};
+    public static void main(String[] args) {
+        qSort2(array11, 0, array11.length-1);
+    }
+
+    public static void qSort2(int[] array, int start, int end) {
+        if (start >= end) {
+            return;
+        }
+
+        int pivot = array[start];
+        int left = start;
+        int right = end;
+        while (left < right) {
+            // 找到右边小的
+            while (left < right && array[right] >= pivot) {
+                right --;
+            }
+            array[left] = array[right];
+
+            while (left < right && array[left] <= pivot) {
+                left ++;
+            }
+            array[right] = array[left];
+        }
+        array[right] = pivot;
+
+        qSort2(array, start, right-1);
+        qSort2(array, right+1, end);
+    }
+
+
+
+
+
     private static void sort(int[] array, int start, int end) {
         // 1个数
         if (start >= end) return;
